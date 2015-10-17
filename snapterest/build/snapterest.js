@@ -18658,8 +18658,7 @@ var ReactClass = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      isHeaderHidden: false,
-      title: 'Stateful React Component'
+      isHeaderHidden: false
     };
   },
   handleClick: function handleClick() {
@@ -18668,7 +18667,8 @@ var ReactClass = React.createClass({
     });
   },
   render: function render() {
-    var headerElement = React.createElement('h1', { className: 'header', key: 'header' }, this.state.title);
+    var title = this.props.title || 'Stateful React Component';
+    var headerElement = React.createElement('h1', { className: 'header', key: 'header' }, title);
     var buttonElement = React.createElement('button', {
       className: 'btn btn-default',
       onClick: this.handleClick,
@@ -18681,7 +18681,7 @@ var ReactClass = React.createClass({
   }
 });
 
-var reactComponentElement = React.createElement(ReactClass, { header: 'Yo mama a ho' });
+var reactComponentElement = React.createElement(ReactClass);
 var reactComponent = ReactDOM.render(reactComponentElement, document.getElementById('react-application'));
 
 },{"react":155,"react-dom":2}]},{},[156]);

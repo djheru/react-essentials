@@ -4,8 +4,7 @@ var React = require('react')
 var ReactClass = React.createClass({
   getInitialState: function () {
     return {
-      isHeaderHidden: false,
-      title: 'Stateful React Component'
+      isHeaderHidden: false
     };
   },
   handleClick: function () {
@@ -14,7 +13,8 @@ var ReactClass = React.createClass({
     });
   },
   render: function () {
-    var headerElement = React.createElement('h1', {className: 'header', key: 'header'}, this.state.title);
+    var title = this.props.title || 'Stateful React Component';
+    var headerElement = React.createElement('h1', {className: 'header', key: 'header'}, title);
     var buttonElement = React.createElement(
       'button',
       {
@@ -30,5 +30,5 @@ var ReactClass = React.createClass({
   }
 });
 
-var reactComponentElement = React.createElement(ReactClass, {header: 'Yo mama a ho'});
+var reactComponentElement = React.createElement(ReactClass, {title: 'Yo mama a ho'});
 var reactComponent = ReactDOM.render(reactComponentElement, document.getElementById('react-application'));
