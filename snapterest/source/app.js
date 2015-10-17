@@ -1,35 +1,34 @@
 var React = require('react')
   , ReactDOM = require('react-dom');
 
-/*
-var listItemElement1 = React.createElement('li', {className: 'item-1', key: 'item-1'}, 'Item 1');
-var listItemElement2 = React.createElement('li', {className: 'item-2', key: 'item-2'}, 'Item 2');
-var listItemElement3 = React.createElement('li', {className: 'item-3', key: 'item-3'}, 'Item 3');
+var ReactClass = React.createClass({
+  getInitialState: function () {
+    return {
+      isHeaderHidden: false,
+      title: 'Stateful React Component'
+    };
+  },
+  handleClick: function () {
+    this.setState({
+      isHeaderHidden: !this.state.isHeaderHidden
+    });
+  },
+  render: function () {
+    var headerElement = React.createElement('h1', {className: 'header', key: 'header'}, this.state.title);
+    var buttonElement = React.createElement(
+      'button',
+      {
+        className: 'btn btn-default',
+        onClick: this.handleClick,
+        key: 'button'
+      },
+      'Toggle Header');
+    if (this.state.isHeaderHidden) {
+      return React.createElement('div', null, [buttonElement]);
+    }
+    return React.createElement('div', null, [ buttonElement, headerElement ]);
+  }
+});
 
-var reactFragment = [listItemElement1, listItemElement2, listItemElement3];
-var listOfItems = React.createElement('ul', {className: 'list-of-items'}, reactFragment);*/
-
-/*
-var createListItemElement = React.createFactory('li');
-var listItemElement1 = createListItemElement({className: 'item-1', key: 'item-1'}, 'Item-1');
-var listItemElement2 = createListItemElement({className: 'item-2', key: 'item-2'}, 'Item-2');
-var listItemElement3 = createListItemElement({className: 'item-3', key: 'item-3'}, 'Item-3');
-
-var reactFragment = [listItemElement1, listItemElement2, listItemElement3];
-var listOfItems = React.createElement('ul', {className: 'list-of-items'}, reactFragment);*/
-
-/*
-var listItemElement1 = React.DOM.li({className: 'item-1', key: 'item-1'}, 'Item-1');
-var listItemElement2 = React.DOM.li({className: 'item-2', key: 'item-2'}, 'Item-2');
-var listItemElement3 = React.DOM.li({className: 'item-3', key: 'item-3'}, 'Item-3');
-
-var reactFragment = [listItemElement1, listItemElement2, listItemElement3];
-var listOfItems = React.createElement('ul', {className: 'list-of-items'}, reactFragment);
-*/
-
-var listOfItems = <ul className="list-of-items">
-    <li className="item-1">Item 1</li>
-    <li className="item-2">Item 2</li>
-    <li className="item-3">Item 3</li>
-  </ul>
-ReactDOM.render(listOfItems, document.getElementById('react-application'));
+var reactComponentElement = React.createElement(ReactClass, {header: 'Yo mama a ho'});
+var reactComponent = ReactDOM.render(reactComponentElement, document.getElementById('react-application'));
