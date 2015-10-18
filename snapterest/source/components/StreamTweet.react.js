@@ -25,6 +25,40 @@ var StreamTweet = React.createClass({
     }
   },
 
+  componentDidMount: function () {
+    console.log('[Snapterest] 3. StreamTweet running componentDidMount()');
+    var componentDOMRepresentation = ReactDOM.findDOMNode(this);
+    window.snapterest.headerHTML = componentDOMRepresentation.children[0].outerHTML;
+    window.snapterest.tweetHTML = componentDOMRepresentation.children[1].outerHTML;
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    console.log('[Snapterest] 4. StreamTweet running componentWillReceiveProps()');
+    var currentTweetLength = this.props.tweet.length,
+      nextTweetLength = nextProps.tweet.text.length,
+      isNumberOfCharactersIncreasing = (nextTweetLength > currentTweetLength),
+      headerText;
+
+    this.setState({
+      numberOfCharactersIsIncreasing: isNumberOfCharactersIncreasing
+    });
+    headerText = (isNumberOfCharactersIncreasing) ?
+      'Number of characters is increasing' : 'Latest public photo from twitter';
+    this.setState({
+      headerText: headerText
+    });
+    window.snapterest.numberOfReceivedTweets++;
+  },
+
+  shouldComponentUpdate: function() {
+    console.log('[Snapterest] 5. StreamTweet running shouldComponentUpdate()');
+    return (nextProps.tweet.text.length > 1);
+  },
+
+  componentWillUpdate: function (nextProps, nextState) {
+    console.log('[Snapterest] 6. StreamTweet running componentWillUpdate()');
+  },
+
   render: function () {
     console.log('[Snapterest] StreamTweet running render()');
     return (
@@ -37,11 +71,10 @@ var StreamTweet = React.createClass({
     );
   },
 
-  componentDidMount: function () {
-    console.log('[Snapterest] 3. StreamTweet running componentDidMount()');
-    var componentDOMRepresentation = ReactDOM.findDOMNode(this);
-    window.snapterest.headerHTML = componentDOMRepresentation.children[0].outerHTML;
-    window.snapterest.tweetHTML = componentDOMRepresentation.children[1].outerHTML;
+  componentDidUpdate: function (prevProps, prevState) {
+    console.log('[Snapterest] 7. StreamTweet running componentDidUpdate()');
+
+    window.snapterest.numberOfDisplayedTweets++;
   },
 
   componentWillUnmount: function () {
