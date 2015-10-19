@@ -13,7 +13,7 @@ var StreamTweet = React.createClass({
     }
   },
 
-  componentWilLMount: function () {
+  componentWillMount: function () {
     console.log('[Snapterest] 2. StreamTweet running componentWillMount()');
     this.setState({
       numberOfCharactersIsIncreasing: true,
@@ -21,7 +21,9 @@ var StreamTweet = React.createClass({
     });
     window.snapterest = {
       numberOfReceivedTweets: 1,
-      numberOfDisplayedTweets: 1
+      numberOfDisplayedTweets: 1,
+      headerHTML: '',
+      tweetHTML: ''
     }
   },
 
@@ -50,7 +52,7 @@ var StreamTweet = React.createClass({
     window.snapterest.numberOfReceivedTweets++;
   },
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate: function(nextProps, nextState) {
     console.log('[Snapterest] 5. StreamTweet running shouldComponentUpdate()');
     return (nextProps.tweet.text.length > 1);
   },

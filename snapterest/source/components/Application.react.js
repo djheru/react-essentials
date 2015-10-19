@@ -44,7 +44,7 @@ var Application = React.createClass({
             <Collection
               tweets={this.state.collectionTweets}
               onRemoveTweetFromCollection={this.removeTweetFromCollection}
-              onEmptyTweetCollection={this.emptyTweetCollection} />
+              onRemoveAllTweetsFromCollection={this.emptyTweetCollection} />
           </div>
         </div>
       </div>
