@@ -19,6 +19,7 @@ var Stream = React.createClass({
   },
 
   handleNewTweet: function (tweet) {
+    console.log(tweet);
     this.setState({
       tweet: tweet
     });

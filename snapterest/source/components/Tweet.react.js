@@ -42,6 +42,7 @@ var Tweet = React.createClass({
 
   render: function () {
     var tweet = this.props.tweet;
+    console.log(tweet)
     var tweetMediaUrl = tweet.media[0].url;
 
     return (

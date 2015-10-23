@@ -6,7 +6,7 @@ var React = require('react'),
 var StreamTweet = React.createClass({
 
   getInitialState: function () {
-    console.log('[Snapterest] 1. StreamTweet running getInitialState()');
+    //console.log('[Snapterest] 1. StreamTweet running getInitialState()');
     return {
       numberOfCharactersIsIncreasing: null,
       headerText: null
@@ -14,7 +14,7 @@ var StreamTweet = React.createClass({
   },
 
   componentWillMount: function () {
-    console.log('[Snapterest] 2. StreamTweet running componentWillMount()');
+    // console.log('[Snapterest] 2. StreamTweet running componentWillMount()');
     this.setState({
       numberOfCharactersIsIncreasing: true,
       headerText: 'Latest Public Photo from Twitter'
@@ -28,14 +28,14 @@ var StreamTweet = React.createClass({
   },
 
   componentDidMount: function () {
-    console.log('[Snapterest] 3. StreamTweet running componentDidMount()');
+    //console.log('[Snapterest] 3. StreamTweet running componentDidMount()');
     var componentDOMRepresentation = ReactDOM.findDOMNode(this);
     window.snapterest.headerHTML = componentDOMRepresentation.children[0].outerHTML;
     window.snapterest.tweetHTML = componentDOMRepresentation.children[1].outerHTML;
   },
 
   componentWillReceiveProps: function (nextProps) {
-    console.log('[Snapterest] 4. StreamTweet running componentWillReceiveProps()');
+    //console.log('[Snapterest] 4. StreamTweet running componentWillReceiveProps()');
     var currentTweetLength = this.props.tweet.length,
       nextTweetLength = nextProps.tweet.text.length,
       isNumberOfCharactersIncreasing = (nextTweetLength > currentTweetLength),
@@ -53,12 +53,12 @@ var StreamTweet = React.createClass({
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('[Snapterest] 5. StreamTweet running shouldComponentUpdate()');
+    //console.log('[Snapterest] 5. StreamTweet running shouldComponentUpdate()');
     return (nextProps.tweet.text.length > 1);
   },
 
   componentWillUpdate: function (nextProps, nextState) {
-    console.log('[Snapterest] 6. StreamTweet running componentWillUpdate()');
+    //console.log('[Snapterest] 6. StreamTweet running componentWillUpdate()');
   },
 
   render: function () {
@@ -74,13 +74,13 @@ var StreamTweet = React.createClass({
   },
 
   componentDidUpdate: function (prevProps, prevState) {
-    console.log('[Snapterest] 7. StreamTweet running componentDidUpdate()');
+    //console.log('[Snapterest] 7. StreamTweet running componentDidUpdate()');
 
     window.snapterest.numberOfDisplayedTweets++;
   },
 
   componentWillUnmount: function () {
-    console.log('[Snapterest] 8. Running componentWillUnmount()');
+    //console.log('[Snapterest] 8. Running componentWillUnmount()');
     delete window.snapterest;
   }
 
