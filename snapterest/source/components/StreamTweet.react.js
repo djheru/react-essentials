@@ -1,9 +1,16 @@
 var React = require('react'),
   ReactDOM = require('react-dom'),
   Header = require('./Header.react'),
+  CollectionActionCreators = require('../actions/CollectionActionCreators'),
   Tweet = require('./Tweet.react');
 
 var StreamTweet = React.createClass({
+
+  addTweetToCollection: function (tweet) {
+    console.log('add tweet to collection: ', tweet);
+    CollectionActionCreators.addTweetToCollection(tweet);
+  },
+
 
   getInitialState: function () {
     //console.log('[Snapterest] 1. StreamTweet running getInitialState()');
@@ -62,13 +69,13 @@ var StreamTweet = React.createClass({
   },
 
   render: function () {
-    console.log('[Snapterest] StreamTweet running render()');
+    //console.log('[Snapterest] StreamTweet running render()');
     return (
       <section>
         <Header text={this.state.headerText} />
         <Tweet
           tweet={this.props.tweet}
-          onImageClick={this.props.onAddTweetToCollection} />
+          onImageClick={this.addTweetToCollection} />
       </section>
     );
   },

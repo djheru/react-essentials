@@ -1,4 +1,5 @@
 var React = require('react'),
+  CollectionActionCreators = require('../actions/CollectionActionCreators'),
   Tweet = require('./Tweet.react');
 
 var listStyle = {
@@ -11,13 +12,19 @@ var listItemStyle = {
 };
 
 var TweetList = React.createClass({
+
+  removeTweetFromCollection: function (tweet) {
+    console.log('removing tweet from coll')
+    CollectionActionCreators.removeTweetFromCollection(tweet.id);
+  },
+
   getListOfTweetIds: function () {
     return Object.keys(this.props.tweets);
   },
 
   getTweetElement: function (tweetId) {
     var tweet = this.props.tweets[tweetId];
-    var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollection;
+    var handleRemoveTweetFromCollection = this.removeTweetFromCollection;
     var tweetElement;
 
     if (handleRemoveTweetFromCollection) {
